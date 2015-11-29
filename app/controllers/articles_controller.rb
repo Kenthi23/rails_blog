@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_author!, only: [:new, :create, :edit, :update, :destroy]
   # GET /articles
   # GET /articles.json
   def index
@@ -25,6 +25,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
+    @article.author_id = current_author.id
 
     respond_to do |format|
       if @article.save
