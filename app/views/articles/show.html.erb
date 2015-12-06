@@ -4,6 +4,9 @@
   <strong>Title:</strong>
   <%= @article.title %>
 </p>
+<% if @article.image? %>
+<%= image_tag @article.image.url %>
+<% end %>
 
 <p>
   <strong>Body:</strong>
